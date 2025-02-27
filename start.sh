@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Check for required environment variables and set defaults if missing
 if [ -z "$MEGA_EMAIL" ]; then
   echo "MEGA_EMAIL not provided! Using default value."
@@ -14,6 +16,8 @@ if [ -z "$BASE_URL" ]; then
   export BASE_URL="http://localhost:8080"
 fi
 
+# Start a simple HTTP server for health checks
+nohup python3 -m http.server 8080 &
+
 # Start the application
 python3 update.py && python3 -m bot
-#!/bin/bash
